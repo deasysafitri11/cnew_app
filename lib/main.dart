@@ -1,5 +1,7 @@
 import 'package:cnew_app/constant/theme.dart';
 import 'package:cnew_app/pages/on_boarding_page.dart';
+import 'package:cnew_app/providers/ekonomi_new_provider.dart';
+import 'package:cnew_app/providers/nasional_new_provider.dart';
 import 'package:cnew_app/providers/news_update_provider.dart';
 import 'package:cnew_app/providers/tech_new_provider.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => TechNewsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => EkonomiNewProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => NasionalNewProvider(),
         ),
       ],
       child: MaterialApp(

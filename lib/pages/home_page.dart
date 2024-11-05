@@ -1,7 +1,11 @@
 import 'package:cnew_app/constant/theme.dart';
 import 'package:cnew_app/models/news_update_model.dart';
 import 'package:cnew_app/pages/news_detail_page.dart';
+import 'package:cnew_app/pages/widgets/build_ekonomi_news.dart';
+import 'package:cnew_app/pages/widgets/build_nasional_news.dart';
 import 'package:cnew_app/pages/widgets/build_tech_news.dart';
+import 'package:cnew_app/providers/ekonomi_new_provider.dart';
+import 'package:cnew_app/providers/nasional_new_provider.dart';
 import 'package:cnew_app/providers/news_update_provider.dart';
 import 'package:cnew_app/providers/tech_new_provider.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +32,8 @@ class _HomePageState extends State<HomePage>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<NewsUpdateProvider>(context, listen: false).fetchNewsUpdate();
       Provider.of<TechNewsProvider>(context, listen: false).fetchTechNews();
+      Provider.of<NasionalNewProvider>(context, listen: false).fetchNasionalNews();
+      // Provider.of<TechNewsProvider>(context, listen: false).fetchTechNews();
     });
 
     updateNewsScrollController.addListener(() {
@@ -94,7 +100,7 @@ class _HomePageState extends State<HomePage>
               ),
             ),
             Text(
-              'Faik Irkham',
+              'Deasy Safitri',
               style: blackTextStyle.copyWith(
                 fontWeight: FontWeight.w600,
               ),
@@ -284,10 +290,9 @@ class _HomePageState extends State<HomePage>
             tabAlignment: TabAlignment.start,
             tabs: const [
               Tab(text: 'Tekno'),
-              Tab(text: 'Hukum'),
               Tab(text: 'Ekonomi'),
-              Tab(text: 'Olahraga'),
-              Tab(text: 'Lifestyle'),
+              Tab(text: 'Nasional'),
+              
             ],
           ),
         ),
@@ -310,10 +315,34 @@ class _HomePageState extends State<HomePage>
                   }
                 },
               ),
-              const Center(child: Text('Konten Hukum')),
-              const Center(child: Text('Konten Ekonomi')),
-              const Center(child: Text('Konten Olahraga')),
-              const Center(child: Text('Konten Lifestyle')),
+              Consumer<EkonomiNewProvider>(
+                builder: (context, ekonomiNews, child) {
+                  if (ekonomiNews.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (ekonomiNews.ekonomiList.isEmpty) {
+                    return const Text('No Data');
+                  } else {
+                    return BuildEkonomiNews(berita: ekonomiNews.ekonomiList.first);
+                  }
+                },
+              ),
+              Consumer<NasionalNewProvider>(
+                builder: (context, nasionalNews, child) {
+                  if (nasionalNews.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (nasionalNews.nasionalList.isEmpty) {
+                    return const Text('No Data');
+                  } else {
+                    return BuildNasionalNews(berita: nasionalNews.nasionalList.first);
+                  }
+                },
+              ),
+             
+              
             ],
           ),
         ),

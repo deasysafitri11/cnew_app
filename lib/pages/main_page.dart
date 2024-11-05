@@ -54,24 +54,24 @@ class _MainPageState extends State<MainPage> {
             ),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/ic/explorer.png',
-              color: _selectedIndex == 1
-                  ? whiteColor
-                  : whiteColor.withOpacity(0.5),
-            ),
-            label: 'Explore',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/ic/save.png',
-              color: _selectedIndex == 2
-                  ? whiteColor
-                  : whiteColor.withOpacity(0.5),
-            ),
-            label: 'Saved',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Image.asset(
+          //     'assets/ic/explorer.png',
+          //     color: _selectedIndex == 1
+          //         ? whiteColor
+          //         : whiteColor.withOpacity(0.5),
+          //   ),
+          //   label: 'Explore',
+          // ),
+          // BottomNavigationBarItem(
+          //   icon: Image.asset(
+          //     'assets/ic/save.png',
+          //     color: _selectedIndex == 2
+          //         ? whiteColor
+          //         : whiteColor.withOpacity(0.5),
+          //   ),
+          //   label: 'Saved',
+          // ),
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/ic/profile.png',
